@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/signUp.css" />
+    <script src="/scripts/signUp.js" defer></script>
+  </head>
+  <body>
+    <%- include('./components/header') %>
+    <main>
+      <h1>Sign Up</h1>
+      <% if (errors.length !== 0) {%>
+      <div class="form-submit-errors">
+        <h2>Issues with form submission:</h2>
+        <ul>
+          <% errors.forEach(function(error) {%>
+          <li><%= error.message %></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% } %>
+      <form action="/sign-up" method="POST">
+        <label for="username">Username (required): </label>
+        <div class="error-message" id="username-error"></div>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          minlength="3"
+          maxlength="20"
+          value="<%= formData ? formData.username : '' %>"
+          required
+        />
+
+        <label for="email">Email (required): </label>
+        <div class="error-message" id="email-error"></div>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          maxlength="255"
+          value="<%= formData ? formData.email : '' %>"
+          required
+        />
+
+        <label for="password">Password (required): </label>
+        <div class="error-message" id="password-error"></div>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          minlength="6"
+          value="<%= formData ? formData.password : '' %>"
+          required
+        />
+
+        <label for="confirm-password">Confirm Password (required):</label>
+        <div class="error-message" id="confirm-password-error"></div>
+        <input
+          type="password"
+          name="confirm-password"
+          id="confirm-password"
+          value="<%= formData ? formData.confirm-password : '' %>"
+          required
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </main>
+  </body>
+</html>
