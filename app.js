@@ -22,6 +22,7 @@ const express = require("express");
 const path = require("node:path");
 const indexRouter = require("./routes/indexRouter");
 const signUpRouter = require("./routes/signUpRouter");
+const DatabaseError = require("./errors/DatabaseError");
 
 // Create an instance of the Express app
 const app = express();
@@ -44,6 +45,28 @@ app.use(express.static(path.join(__dirname, "public")));
 // =========================
 app.use("/sign-up", signUpRouter());
 app.use("/", indexRouter());
+
+// catching non-existant pages
+app.use((req, res, next) => {
+  const err = new Error("The page you are looking for does not exist.");
+  err.statusCode = 404;
+  next(err);
+});
+
+// global error middleware
+app.use((err, req, res, next) => {
+  if (err instanceof DatabaseError) {
+    return res.status(500).render("error", {
+      title: "Error",
+      error: "Something went wrong. Please try again later.",
+    });
+  }
+
+  res.status(err.statusCode || 500).render("error", {
+    title: "Error",
+    error: err.message || "Internal Server Error",
+  });
+});
 
 // =========================
 // 4. SERVER START

@@ -14,7 +14,7 @@
         <h2>Issues with form submission:</h2>
         <ul>
           <% errors.forEach(function(error) {%>
-          <li><%= error.message %></li>
+          <li><%= error.msg %></li>
           <% }); %>
         </ul>
       </div>
@@ -60,7 +60,7 @@
           type="password"
           name="confirm-password"
           id="confirm-password"
-          value="<%= formData ? formData.confirm-password : '' %>"
+          value="<%= formData ? formData['confirm-password'] : '' %>"
           required
         />
         <button type="submit">Submit</button>
