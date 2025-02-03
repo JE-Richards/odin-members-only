@@ -9,6 +9,19 @@
 header {
   padding: 1em 0.5em;
   border-bottom: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header > h1 a {
+  text-decoration: none;
+  color: black;
+}
+
+nav a + a,
+nav p + a {
+  margin-left: 1em;
 }
 
 main {

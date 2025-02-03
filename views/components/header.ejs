@@ -1,4 +1,12 @@
 <header>
-  <h1>The Odin Club</h1>
-  <nav></nav>
+  <h1><a href="/">The Odin Club</a></h1>
+  <nav>
+    <% if (user) { %>
+    <p>Welcome, <%= user.username %>.</p>
+    <a href="/logout">Logout</a>
+    <% } else { %>
+    <a href="/sign-up">Sign up</a>
+    <a href="/login">Login</a>
+    <% } %>
+  </nav>
 </header>

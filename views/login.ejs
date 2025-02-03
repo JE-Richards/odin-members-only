@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/signUp.css" />
+    <script src="/scripts/login.js" defer></script>
+  </head>
+  <body>
+    <%- include('./components/header') %>
+    <main>
+      <h1>Sign Up</h1>
+      <% if (errors.length !== 0) {%>
+      <div class="form-submit-errors">
+        <h2>Issues with form submission:</h2>
+        <ul>
+          <% errors.forEach(function(error) {%>
+          <li><%= error.msg %></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% } %>
+      <form action="/login" method="POST">
+        <label for="username">Username: </label>
+        <div class="error-message" id="username-error"></div>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          minlength="3"
+          maxlength="20"
+          value="<%= formData ? formData.username : '' %>"
+          required
+        />
+
+        <label for="password">Password: </label>
+        <div class="error-message" id="password-error"></div>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          value="<% formData ? formData.password : '' %>"
+          required
+        />
+
+        <button type="submit">Login</button>
+      </form>
+    </main>
+  </body>
+</html>
