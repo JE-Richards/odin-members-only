@@ -80,6 +80,12 @@ const postLogin = [
           return next(err);
         }
 
+        // if the user doesn't have a role, redirect to the membership quiz to gain a role
+        if (!user.role_id) {
+          return res.redirect("/membership-quiz");
+        }
+
+        // if user has a role, redirect to index
         return res.redirect("/");
       });
     })(req, res, next);

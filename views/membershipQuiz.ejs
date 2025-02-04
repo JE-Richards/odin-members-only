@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/membershipQuiz.css" />
+  </head>
+  <body>
+    <%- include('./components/header') %>
+    <main>
+      <h1>Gain Membership</h1>
+      <% if (errors.length !== 0) {%>
+      <div class="form-submit-errors">
+        <ul>
+          <% errors.forEach(function(error) {%>
+          <li><%= error.msg %></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% } %>
+      <form action="membership-quiz" method="POST">
+        <label for="membership-question"
+          >I am a three-digit number. My tens digit is five more than my ones
+          digit, and my hundreds digit is eight less than my tens digit. What
+          number am i?</label
+        >
+        <div class="error-message" id="memebershipQuestion-error"></div>
+        <input
+          type="number"
+          name="membershipQuestion"
+          id="membershipQuestion"
+          maxlength="3"
+          minlength="3"
+          required
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </main>
+  </body>
+</html>
