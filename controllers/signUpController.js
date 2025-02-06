@@ -20,7 +20,7 @@
 const validateSignUp = require("../validators/signUpValidator");
 const { validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
-const { insertNewUser } = require("../db/queries/insert/user");
+const { insertNewUser } = require("../db/queries/insert/users");
 const ValidationError = require("../errors/ValidationError");
 const DatabaseError = require("../errors/DatabaseError");
 

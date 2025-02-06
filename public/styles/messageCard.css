@@ -1,0 +1,14 @@
+.messageCard {
+  border: 1px solid black;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.message-metadata {
+  display: flex;
+  gap: 1em;
+  color: gray;
+  font-size: 0.9rem;
+}

@@ -1,7 +1,7 @@
 // =========================
 // INSERT USERS QUERIES
 // =========================
-// This module contains functions for interacting wiht the database to insert
+// This module contains functions for interacting with the database to insert
 // new users. It provides a specific function to insert a new user into the
 // `users` table, handling the insertion logic as well as ensuring no duplicate
 // usernames or emails are added.

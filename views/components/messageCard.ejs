@@ -1,0 +1,15 @@
+<div class="messageCard">
+  <p><span class="bold">Title:</span> <%= message.message_title%></p>
+  <p><span class="bold">Message:</span> <%= message.message %></p>
+  <div class="message-metadata">
+    <% if (user && user.role_id) {%>
+    <p><span class="bold">Posted by:</span> <%= message.username %></p>
+    <% } else { %>
+    <p>
+      <span class="bold">Posted by:</span>
+      <span class="italics">username hidden</span>
+    </p>
+    <% } %>
+    <p><span class="bold">Posted on:</span> <%= message.created_at %></p>
+  </div>
+</div>

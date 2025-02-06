@@ -1,0 +1,36 @@
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em 0;
+  width: 80%;
+  max-width: 800px;
+}
+
+label,
+button {
+  font-weight: 700;
+  margin-top: 1em;
+}
+
+.error-message,
+.form-submit-errors {
+  color: red;
+  border: 1px solid red;
+  padding: 0.25em;
+}
+
+.error-message:empty {
+  display: none;
+}
+
+.error-message {
+  margin: 0.25em 0;
+}
+
+.form-submit-errors {
+  margin-top: 1em;
+}
+
+ul {
+  list-style-position: inside;
+}

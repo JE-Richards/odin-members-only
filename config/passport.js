@@ -19,7 +19,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const {
   findUserByUsername,
   findUserById,
-} = require("../db/queries/select/user");
+} = require("../db/queries/select/users");
 const NotFoundError = require("../errors/NotFoundError");
 const bcrypt = require("bcryptjs");
 

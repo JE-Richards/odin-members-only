@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/createPost.css" />
+    <script src="/scripts/login.js" defer></script>
+  </head>
+  <body>
+    <%- include('./components/header') %>
+    <main>
+      <h1>Create a New Post</h1>
+      <ul>
+        <% errors.forEach(function(error) {%>
+        <li><%= error.msg %></li>
+        <% }); %>
+      </ul>
+      <form action="/create-post" method="POST">
+        <label for="postTitle">Title: </label>
+        <div class="error-message" id="postTitle-error"></div>
+        <input
+          type="text"
+          name="postTitle"
+          id="postTitle"
+          minlength="3"
+          maxlength="255"
+          value="<%= formData ? formData.postTitle : '' %>"
+          required
+        />
+
+        <label for="postMessage">Message: </label>
+        <div class="error-message" id="postMessage-error"></div>
+        <textarea
+          name="postMessage"
+          id="postMessage"
+          rows="4"
+          cols="50"
+          minlength="3"
+          maxlength="1000"
+          value="<%= formData ? formData.postMessage : '' %>"
+          required
+        ></textarea>
+
+        <button type="submit">Post</button>
+      </form>
+    </main>
+  </body>
+</html>

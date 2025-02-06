@@ -19,11 +19,19 @@ header > h1 a {
   color: black;
 }
 
-nav a + a,
-nav p + a {
-  margin-left: 1em;
+nav {
+  display: flex;
+  gap: 1em;
 }
 
 main {
   padding: 0.5em;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italics {
+  font-style: italic;
 }

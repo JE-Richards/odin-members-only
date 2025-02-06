@@ -2,10 +2,16 @@
   <head>
     <title><%= title %></title>
     <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/messageCard.css" />
     <link rel="stylesheet" href="/styles/index.css" />
   </head>
   <body>
     <%- include('./components/header') %>
-    <main></main>
+    <main>
+      <div class="message-board">
+        <% messages.forEach((message) => {%> <%-
+        include('./components/messageCard', { message }); %> <% }); %>
+      </div>
+    </main>
   </body>
 </html>
