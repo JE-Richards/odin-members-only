@@ -22,6 +22,10 @@ const asyncHandler = require("express-async-handler");
 const validateCreatePost = require("../validators/createPostValidator");
 const { validationResult } = require("express-validator");
 const { insertNewMessage } = require("../db/queries/insert/messages");
+const {
+  updateUserLastPosted,
+  updateUserRole,
+} = require("../db/queries/update/users");
 const DataIntegrityError = require("../errors/DataIntegrityError");
 
 // =========================
@@ -52,11 +56,17 @@ const postCreatePost = [
     }
 
     try {
-      await insertNewMessage(
+      const { created_at } = await insertNewMessage(
         req.body.postTitle,
         req.body.postMessage,
         req.user.id
       );
+
+      try {
+        await updateUserLastPosted(req.user.id, created_at);
+      } catch (updateErr) {
+        console.error("Failed to update last_posted: ", updateUserRole);
+      }
 
       // return to homepage if no errors occur
       res.redirect("/");

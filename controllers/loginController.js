@@ -18,8 +18,10 @@
 // 1. SETUP
 // =========================
 const passport = require("passport");
+const asyncHandler = require("express-async-handler");
 const validateLogin = require("../validators/loginValidator");
 const { validationResult } = require("express-validator");
+const { updateUserLastLoggedIn } = require("../db/queries/update/users");
 
 // =========================
 // 2. CONTROLLER FUNCTIONS
@@ -40,7 +42,7 @@ const getLoginPage = (req, res) => {
 // =========================
 const postLogin = [
   validateLogin,
-  (req, res, next) => {
+  asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
     let formErrors = [];
 
@@ -75,9 +77,16 @@ const postLogin = [
       }
 
       // If login successful
-      req.logIn(user, (err) => {
+      req.logIn(user, async (err) => {
         if (err) {
           return next(err);
+        }
+
+        try {
+          await updateUserLastLoggedIn(user.id);
+        } catch (updateErr) {
+          console.log("Failed to update last_logged_in: ", updateErr);
+          throw updateErr;
         }
 
         // if the user doesn't have a role, redirect to the membership quiz to gain a role
@@ -89,7 +98,7 @@ const postLogin = [
         return res.redirect("/");
       });
     })(req, res, next);
-  },
+  }),
 ];
 
 // =========================

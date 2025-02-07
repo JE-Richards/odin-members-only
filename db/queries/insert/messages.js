@@ -43,7 +43,7 @@ async function insertNewMessage(title, message, userId) {
     const insertQuery = `
       INSERT INTO messages (message_title, message, author_id, created_at)
       VALUES ($1, $2, $3, NOW())
-      RETURNING id;
+      RETURNING id, created_at;
     `;
 
     const { rows } = await client.query(insertQuery, [title, message, userId]);
