@@ -19,17 +19,20 @@ const { getAllMessagesWithAuthor } = require("../db/queries/select/messages");
 // 2. CONTROLLER FUNCTIONS
 // =========================
 const getIndex = asyncHandler(async (req, res, next) => {
+  let messages;
+
   try {
-    const messages = await getAllMessagesWithAuthor();
-
-    if (!messages) {
-      return res.render("index", { title: "The Odin Club", messages: [] });
-    }
-
-    return res.render("index", { title: "The Odin Club", messages });
+    messages = await getAllMessagesWithAuthor();
   } catch (err) {
-    next(err);
+    console.log("Error retrieving messages: ", err);
+    return res.render("index", { title: "The Odin Club", messages: [] });
   }
+
+  if (!messages) {
+    return res.render("index", { title: "The Odin Club", messages: [] });
+  }
+
+  return res.render("index", { title: "The Odin Club", messages });
 });
 
 // =========================

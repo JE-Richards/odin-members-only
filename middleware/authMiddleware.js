@@ -12,4 +12,13 @@ function requireMembership(req, res, next) {
   next();
 }
 
-module.exports = { ensureUserAuth, requireMembership };
+function requireAdmin(req, res, next) {
+  if (!req.user || req.user.role_id !== 1) {
+    throw new Error(
+      "Access Denied: You must be an admin to perform this action."
+    );
+  }
+  next();
+}
+
+module.exports = { ensureUserAuth, requireMembership, requireAdmin };

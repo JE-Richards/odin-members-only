@@ -2,7 +2,9 @@
   <p><span class="bold">Title:</span> <%= message.message_title%></p>
   <p><span class="bold">Message:</span> <%= message.message %></p>
   <div class="message-metadata">
-    <% if (user && user.role_id) {%>
+    <% if (user && user.role_id) {%> <% if (user.role_id === 1) {%>
+    <button class="delete-message" data-id="<%= message.id %>">Delete</button>
+    <% } %>
     <p><span class="bold">Posted by:</span> <%= message.username %></p>
     <% } else { %>
     <p>

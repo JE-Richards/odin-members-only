@@ -29,6 +29,7 @@ const logoutRouter = require("./routes/logoutRouter");
 const membershipQuizRouter = require("./routes/membershipQuizRouter");
 const createPostRouter = require("./routes/createPostRouter");
 const makeAdminRouter = require("./routes/makeAdminRouter");
+const messagesRouter = require("./routes/messagesRouter");
 const DatabaseError = require("./errors/DatabaseError");
 
 // Create an instance of the Express app
@@ -73,6 +74,7 @@ app.use("/logout", logoutRouter());
 app.use("/membership-quiz", membershipQuizRouter());
 app.use("/create-post", createPostRouter());
 app.use("/make-admin", makeAdminRouter());
+app.use("/messages", messagesRouter());
 app.use("/", indexRouter());
 
 // catching non-existant pages
