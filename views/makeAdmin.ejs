@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/makeAdmin.css" />
+  </head>
+  <body>
+    <%- include('./components/header') %>
+    <main>
+      <h1>Make Admin</h1>
+      <% if (errors.length !== 0) {%>
+      <div class="form-submit-errors">
+        <ul>
+          <% errors.forEach(function(error) {%>
+          <li><%= error.msg %></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% } %>
+      <form action="make-admin" method="POST">
+        <label for="adminPass">Passcode: </label>
+        <div class="error-message" id="adminPass-error"></div>
+        <input
+          type="text"
+          name="adminPass"
+          id="adminPass"
+          maxlength="255"
+          minlength="3"
+          required
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </main>
+  </body>
+</html>
